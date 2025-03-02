@@ -5,12 +5,17 @@ import {
   CustomersTableType,
   FormattedCustomersTable,
 } from '@/app/lib/definitions';
+import { fetchFilteredCustomers } from '@/app/lib/data';
 
 export default async function CustomersTable({
-  customers,
+  customers
 }: {
   customers: FormattedCustomersTable[];
 }) {
+
+  const cust = await fetchFilteredCustomers()
+  // console.log(cust)
+
   return (
     <div className="w-full">
       <h1 className={`${lusitana.className} mb-8 text-xl md:text-2xl`}>
@@ -22,7 +27,7 @@ export default async function CustomersTable({
           <div className="inline-block min-w-full align-middle">
             <div className="overflow-hidden rounded-md bg-gray-50 p-2 md:pt-0">
               <div className="md:hidden">
-                {customers?.map((customer) => (
+                {cust?.map((customer) => (
                   <div
                     key={customer.id}
                     className="mb-2 w-full rounded-md bg-white p-4"
@@ -68,9 +73,9 @@ export default async function CustomersTable({
                     <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
                       Name
                     </th>
-                    <th scope="col" className="px-3 py-5 font-medium">
+                    {/* <th scope="col" className="px-3 py-5 font-medium">
                       Email
-                    </th>
+                    </th> */}
                     <th scope="col" className="px-3 py-5 font-medium">
                       Total Invoices
                     </th>
@@ -98,9 +103,9 @@ export default async function CustomersTable({
                           <p>{customer.name}</p>
                         </div>
                       </td>
-                      <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
+                      {/* <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
                         {customer.email}
-                      </td>
+                      </td> */}
                       <td className="whitespace-nowrap bg-white px-4 py-5 text-sm">
                         {customer.total_invoices}
                       </td>

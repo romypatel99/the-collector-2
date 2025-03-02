@@ -1,8 +1,15 @@
 import { lusitana } from '@/app/ui/fonts';
 import CustomersTable from '@/app/ui/customers/table';
-import { fetchCustomers } from '@/app/lib/data';
+import { fetchFilteredCustomers } from '@/app/lib/data';
  
 export default async function Page() {
+    const [customers] = await Promise.all([fetchFilteredCustomers()]);
 
-<div>Customer Page</div>
+    // console.log(customers)
+
+return (
+    
+    
+    <div><CustomersTable customers={customers} /></div>
+)
 }
