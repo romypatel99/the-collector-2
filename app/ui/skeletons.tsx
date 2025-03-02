@@ -192,6 +192,9 @@ export function InvoicesTableSkeleton() {
                   Date
                 </th>
                 <th scope="col" className="px-3 py-5 font-medium">
+                  Description
+                </th>
+                <th scope="col" className="px-3 py-5 font-medium">
                   Status
                 </th>
                 <th

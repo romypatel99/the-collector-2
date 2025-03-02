@@ -39,6 +39,7 @@ export default async function InvoicesTable({
                       {formatCurrency(invoice.amount)}
                     </p>
                     <p>{formatDateToLocal(invoice.date)}</p>
+                    <p>{invoice.description}</p>
                   </div>
                   <div className="flex justify-end gap-2">
                     <UpdateInvoice id={invoice.id} />
@@ -54,14 +55,17 @@ export default async function InvoicesTable({
                 <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
                   Customer
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                {/* <th scope="col" className="px-3 py-5 font-medium">
                   Email
-                </th>
+                </th> */}
                 <th scope="col" className="px-3 py-5 font-medium">
                   Amount
                 </th>
                 <th scope="col" className="px-3 py-5 font-medium">
                   Date
+                </th>
+                <th scope="col" className="px-3 py-5 font-medium">
+                  Description
                 </th>
                 <th scope="col" className="px-3 py-5 font-medium">
                   Status
@@ -83,14 +87,17 @@ export default async function InvoicesTable({
                       <p>{invoice.name}</p>
                     </div>
                   </td>
-                  <td className="whitespace-nowrap px-3 py-3">
+                  {/* <td className="whitespace-nowrap px-3 py-3">
                     {invoice.email}
-                  </td>
+                  </td> */}
                   <td className="whitespace-nowrap px-3 py-3">
                     {formatCurrency(invoice.amount)}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                     {formatDateToLocal(invoice.date)}
+                  </td>
+                  <td className="whitespace-nowrap px-3 py-3">
+                    {invoice.description}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                     <InvoiceStatus status={invoice.status} />
