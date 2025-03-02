@@ -8,8 +8,9 @@ export default async function Page() {
     // console.log(customers)
 
 return (
+    <main>
+        <div><CustomersTable customers={customers} /></div>
+    </main>
     
-    
-    <div><CustomersTable customers={customers} /></div>
 )
 }
