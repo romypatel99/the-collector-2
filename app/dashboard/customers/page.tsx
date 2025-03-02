@@ -7,7 +7,7 @@ import { InvoicesTableSkeleton } from '@/app/ui/skeletons';
 export const dynamic = 'force-dynamic';
 export default async function Page() {
     const [customers] = await Promise.all([fetchFilteredCustomers()]);
-    console.log(customers)
+    // console.log(customers)
 
 return (
     <main>

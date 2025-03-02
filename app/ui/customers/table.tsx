@@ -14,7 +14,7 @@ export default async function CustomersTable({
 }) {
 
   const cust = await fetchFilteredCustomers()
-  console.log(cust)
+  // console.log(cust)
 
   return (
     <div className="w-full">
