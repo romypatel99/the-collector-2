@@ -5,8 +5,7 @@ import { Suspense } from 'react';
  
 export default async function Page() {
     const [customers] = await Promise.all([fetchFilteredCustomers()]);
-
-    // console.log(customers)
+    console.log(customers)
 
 return (
     <main>
