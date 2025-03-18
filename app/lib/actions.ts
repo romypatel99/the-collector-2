@@ -21,8 +21,14 @@ const FormSchema = z.object({
   date: z.string(),
   description: z.string(),
 });
+
+const custFormSchema = z.object({
+  id: z.string(),
+  customerName: z.string()
+})
  
 const CreateInvoice = FormSchema.omit({ id: true, date: true });
+const CreateCustomer = custFormSchema.omit({ id: true })
 
 export type State = {
   errors?: {
@@ -33,6 +39,13 @@ export type State = {
   };
   message?: string | null;
 };
+
+export type CustomerState = {
+  errors?: {
+    customerName?: string[]
+  };
+  message?: string | null;
+}
  
 export async function createInvoice(prevState: State, formData: FormData) {
   // Validate form using Zod
@@ -72,6 +85,43 @@ export async function createInvoice(prevState: State, formData: FormData) {
   // Revalidate the cache for the invoices page and redirect the user.
   revalidatePath('/dashboard/invoices');
   redirect('/dashboard/invoices');
+}
+
+// Add New Customer to the DB
+export async function addCustomer(prevState: CustomerState,formData: FormData) {
+  const custValidateFields = CreateCustomer.safeParse({
+    customerName: formData.get('customername') 
+  })
+  console.log(custValidateFields)
+  // If form validation fails, return errors early. Otherwise, continue.
+  if (!custValidateFields.success) {
+    return {
+      errors: custValidateFields.error.flatten().fieldErrors,
+      message: 'Missing Fields. Failed to Add Customer.',
+    };
+  }
+  
+ 
+  // Prepare data for insertion into the database
+  const { customerName } = custValidateFields.data;
+ 
+  // Insert data into the database
+  try {
+    await sql`
+      INSERT INTO customers (name)
+      VALUES (${customerName})
+    `;
+
+  } catch (error) {
+    // If a database error occurs, return a more specific error.
+    console.log(error)
+    return {
+      message: 'Database Error: Failed to Add Customer.',
+    };
+  }
+  // Revalidate the cache for the invoices page and redirect the user.
+  revalidatePath('/dashboard/customers');
+  redirect('/dashboard/customers');
 }
 
 // Use Zod to update the expected types

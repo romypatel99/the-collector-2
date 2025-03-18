@@ -113,7 +113,7 @@ export async function fetchFilteredInvoices(
         invoices.date::text ILIKE ${`%${query}%`} OR
         invoices.description::text ILIKE ${`%${query}%`} OR
         invoices.status ILIKE ${`%${query}%`}
-      ORDER BY invoices.date DESC
+      ORDER BY invoices.status DESC
       LIMIT ${ITEMS_PER_PAGE} OFFSET ${offset}
     `;
 

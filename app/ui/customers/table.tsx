@@ -6,6 +6,7 @@ import {
   FormattedCustomersTable,
 } from '@/app/lib/definitions';
 import { fetchFilteredCustomers } from '@/app/lib/data';
+import { AddCustomer } from './buttons';
 
 export default async function CustomersTable({
   customers
@@ -23,6 +24,7 @@ export default async function CustomersTable({
       </h1>
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search customers..." />
+        <AddCustomer />
       </div>
       <div className="mt-6 flow-root">
         <div className="overflow-x-auto">
